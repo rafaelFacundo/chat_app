@@ -1,10 +1,14 @@
 import React, { Children } from 'react';
 import styled from 'styled-components';
 
-const Container = styled.div`
+type ContainerProps = {
+  backgroundColor: string;
+};
+
+const Container = styled.div<ContainerProps>`
   width: 100%;
   height: 100%;
-  background-color: pink;
+  background-color: ${(props) => props.backgroundColor};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,10 +17,14 @@ const Container = styled.div`
 
 type ScreenContainerProps = {
   children: React.ReactNode;
+  backgroundColor: string;
 };
 
-const ScreenContainer: React.FC<ScreenContainerProps> = ({ children }) => {
-  return <Container>{children}</Container>;
+const ScreenContainer: React.FC<ScreenContainerProps> = ({
+  children,
+  backgroundColor,
+}) => {
+  return <Container backgroundColor={backgroundColor}>{children}</Container>;
 };
 
 export default ScreenContainer;

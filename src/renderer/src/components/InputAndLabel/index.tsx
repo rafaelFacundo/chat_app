@@ -1,20 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
 import TextInput from '../TextInput';
+import AdjustableDiv from '../AdjustableDiv';
 
-const Div = styled.div``;
-const Text = styled.h5``;
+const Text = styled.h5`
+  color: black;
+  margin: 0;
+`;
 
 type InputAndLabelProps = {
   Label: string;
+  width: string;
+  height: string;
 };
 
-const InputAndLabel: React.FC<InputAndLabelProps> = ({ Label }) => {
+const InputAndLabel: React.FC<InputAndLabelProps> = ({
+  Label,
+  width,
+  height,
+}) => {
   return (
-    <Div>
+    <AdjustableDiv width={width} height={height}>
       <Text>{Label}</Text>
-      <TextInput />
-    </Div>
+      <TextInput width={'100%'} height={'60%'} />
+    </AdjustableDiv>
   );
 };
 
