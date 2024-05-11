@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { SetStateAction } from 'react';
 import styled from 'styled-components';
 import TextInput from '../TextInput';
 import AdjustableDiv from '../AdjustableDiv';
@@ -12,17 +12,29 @@ type InputAndLabelProps = {
   Label: string;
   width: string;
   height: string;
+  setState: React.Dispatch<SetStateAction<string>>;
+  state: string;
+  inputBorder?: string;
 };
 
 const InputAndLabel: React.FC<InputAndLabelProps> = ({
   Label,
   width,
   height,
+  setState,
+  state,
+  inputBorder,
 }) => {
   return (
     <AdjustableDiv width={width} height={height}>
       <Text>{Label}</Text>
-      <TextInput width={'100%'} height={'60%'} />
+      <TextInput
+        setState={setState}
+        state={state}
+        width={'100%'}
+        height={'60%'}
+        border={inputBorder}
+      />
     </AdjustableDiv>
   );
 };

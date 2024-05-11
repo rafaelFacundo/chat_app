@@ -28,7 +28,12 @@ const LoginScreen: React.FC = () => {
           height={'60px'}
         />
         <RequestButton width={'70%'} height={'40px'} Text={'Make Login'} />
-        <LinkToSignUpScreen onClick={() => redirect('/signup')}>
+        <LinkToSignUpScreen
+          onClick={() => {
+            console.log('ASASASASSA');
+            return redirect('/signup');
+          }}
+        >
           Create account
         </LinkToSignUpScreen>
       </InputContainer>
