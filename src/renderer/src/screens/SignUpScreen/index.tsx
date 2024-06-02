@@ -5,9 +5,12 @@ import InputContainer from '../../components/InputContainer';
 import InputAndLabel from '../../components/InputAndLabel';
 import RequestButton from '../../components/RequestButton';
 
+import MessageModal from '../../components/messageModal';
+
 const SignUpScreen: React.FC = () => {
   const [userName, setUserName] = useState<string>('');
   const [userPassword, setUserPassword] = useState<string>('');
+  const [showMessageModal, setShowMessageModal] = useState<boolean>(true);
   const [userPasswordConfirmation, setUserPasswordConfirmation] =
     useState<string>('');
   const [isPasswordsDiferents, setIsPasswordsDiferents] =
@@ -39,6 +42,12 @@ const SignUpScreen: React.FC = () => {
 
   return (
     <ScreenContainer backgroundColor={'#191970'}>
+      <MessageModal
+        message={'Something went wrong'}
+        show={showMessageModal}
+        isErrorMessage={true}
+        setShowState={setShowMessageModal}
+      />
       <InputContainer>
         <InputAndLabel
           Label={'Type Your Name:'}
