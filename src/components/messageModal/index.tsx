@@ -1,6 +1,6 @@
 import React, { SetStateAction, useEffect, useState } from "react";
 import styled from "styled-components";
-import CloseMessageModalIcon from "../../../../../assets/closeMessageModalIcon.png";
+import CloseMessageModalIcon from "../../../assets/closeMessageModalIcon.png";
 
 type DivProps = {
   show: boolean;

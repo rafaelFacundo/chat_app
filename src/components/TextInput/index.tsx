@@ -1,6 +1,6 @@
-import React, { SetStateAction } from 'react';
-import styled from 'styled-components';
-import AdjustableDiv from '../AdjustableDiv';
+import React, { SetStateAction } from "react";
+import styled from "styled-components";
+import AdjustableDiv from "../AdjustableDiv";
 
 type InputProps = {
   border?: string;
@@ -12,7 +12,7 @@ const Input = styled.input<InputProps>`
   outline: none;
   margin: 0;
   padding: 0;
-  border: ${(props) => (props.border ? props.border : 'none')};
+  border: ${(props) => (props.border ? props.border : "none")};
   background-color: #f0f0f0;
   transition: 0.5s all;
   &:focus {

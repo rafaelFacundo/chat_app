@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import Hidden from '../../../../../assets/hiddenPerson.png';
+import React from "react";
+import styled from "styled-components";
+import Hidden from "../../../assets/hiddenPerson.png";
 
 const Div = styled.div`
   width: 40%;
