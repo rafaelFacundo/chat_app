@@ -17,7 +17,7 @@ const Div = styled.div<DivProps>`
   background-color: ${(props) =>
     props.isErrorMessage ? "#ce2121" : "#1dd31d"};
   border-radius: 25px 25px 0 0;
-  width: 250px;
+  width: 300px;
   display: ${(props) => (props.show ? "block" : "none")};
 `;
 const Message = styled.p``;

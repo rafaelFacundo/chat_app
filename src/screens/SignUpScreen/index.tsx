@@ -15,12 +15,23 @@ const SignUpScreen: React.FC = () => {
   const [isPasswordsDiferents, setIsPasswordsDiferents] =
     useState<boolean>(false);
   const [makeRequest, setMakeRequest] = useState<boolean>(false);
+  const [textMessageOfTheModal, setTextMessageOfTheModal] =
+    useState<string>("");
+  const [isMessageOfTheModalAnError, setIsMessageOfTheModalAnError] =
+    useState<boolean>(false);
 
   const makeRequestToCreateUser = async () => {
     const response = await userDataBaseAPI.post(
       `${window.env.userDataBaseApiCreateUserUrl}/user/signup`,
       { NEW_USER_NAME: userName, NEW_USER_PASSWORD: userPassword }
     );
+
+    if (response.status !== 200) {
+      setIsMessageOfTheModalAnError(true);
+    }
+
+    setTextMessageOfTheModal(response.data.message);
+    setShowMessageModal(true);
 
     console.log(response.data);
   };
@@ -52,9 +63,9 @@ const SignUpScreen: React.FC = () => {
   return (
     <ScreenContainer backgroundColor={"#191970"}>
       <MessageModal
-        message={"Something went wrong"}
+        message={textMessageOfTheModal}
         show={showMessageModal}
-        isErrorMessage={true}
+        isErrorMessage={isMessageOfTheModalAnError}
         setShowState={setShowMessageModal}
       />
       <InputContainer>
