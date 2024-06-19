@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import AdjustableDiv from '../AdjustableDiv';
+import React from "react";
+import styled from "styled-components";
+import AdjustableDiv from "../AdjustableDiv";
 
 const ButtonElement = styled.button`
   width: 100%;
@@ -19,12 +19,20 @@ type ButtonProps = {
   ButtonText: string;
   width: string;
   height: string;
+  onClickFunction?: () => void;
 };
 
-const Button: React.FC<ButtonProps> = ({ ButtonText, width, height }) => {
+const Button: React.FC<ButtonProps> = ({
+  ButtonText,
+  width,
+  height,
+  onClickFunction,
+}) => {
   return (
     <AdjustableDiv height={height} width={width}>
-      <ButtonElement>{ButtonText}</ButtonElement>
+      <ButtonElement onClick={() => onClickFunction()}>
+        {ButtonText}
+      </ButtonElement>
     </AdjustableDiv>
   );
 };

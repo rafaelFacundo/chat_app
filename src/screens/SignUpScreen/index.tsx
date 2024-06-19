@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-//import usersDataBaseApi from "../../../api";
 import ScreenContainer from "../../components/ScreenContainer";
 import InputContainer from "../../components/InputContainer";
 import InputAndLabel from "../../components/InputAndLabel";
 import RequestButton from "../../components/RequestButton";
-
 import MessageModal from "../../components/messageModal";
+import userDataBaseAPI from "../../createUserApi/index";
 
 const SignUpScreen: React.FC = () => {
   const [userName, setUserName] = useState<string>("");
@@ -17,26 +16,34 @@ const SignUpScreen: React.FC = () => {
     useState<boolean>(false);
   const [makeRequest, setMakeRequest] = useState<boolean>(false);
 
-  /* const makeRequestToCreateUser = async () => {
-    const response = await usersDataBaseApi.post(
-      window.env.userDataBaseApiCreateUserUrl,
-      { NEW_USER_NAME: userName, NEW_USER_PASSWORD: userPassword },
+  const makeRequestToCreateUser = async () => {
+    const response = await userDataBaseAPI.post(
+      `${window.env.userDataBaseApiCreateUserUrl}/user/signup`,
+      { NEW_USER_NAME: userName, NEW_USER_PASSWORD: userPassword }
     );
+
     console.log(response.data);
-  }; */
+  };
 
   useEffect(() => {
-    if (makeRequest) {
-      //makeRequestToCreateUser();
+    try {
+      if (makeRequest) {
+        makeRequestToCreateUser();
+      }
+    } catch (error) {
+      console.error(error);
     }
   }, [makeRequest]);
 
   useEffect(() => {
-    if (
-      userPasswordConfirmation !== "" &&
-      userPassword !== userPasswordConfirmation
-    ) {
+    if (userPassword !== userPasswordConfirmation) {
+      console.log(userPasswordConfirmation, userPassword);
       setIsPasswordsDiferents(true);
+      setMakeRequest(false);
+    } else {
+      setIsPasswordsDiferents(false);
+      console.log("PASSWORD ARE EQUALS");
+      console.log(userPasswordConfirmation, userPassword);
     }
   }, [userPassword, userPasswordConfirmation]);
 
@@ -52,7 +59,7 @@ const SignUpScreen: React.FC = () => {
       />
       <InputContainer>
         <InputAndLabel
-          Label={"Type Your Name:"}
+          Label={"Type your username:"}
           width={"70%"}
           height={"60px"}
           state={userName}
@@ -74,7 +81,16 @@ const SignUpScreen: React.FC = () => {
           setState={setUserPasswordConfirmation}
           inputBorder={isPasswordsDiferents ? "1px solid red" : undefined}
         />
-        <RequestButton width={"70%"} height={"40px"} Text={"Create Account"} />
+        {!isPasswordsDiferents &&
+          userPassword !== "" &&
+          userPasswordConfirmation !== "" && (
+            <RequestButton
+              width={"70%"}
+              height={"40px"}
+              Text={"Create Account"}
+              setStateMakeRequest={setMakeRequest}
+            />
+          )}
       </InputContainer>
     </ScreenContainer>
   );

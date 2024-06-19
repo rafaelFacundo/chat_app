@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SetStateAction } from "react";
 // import styled from 'styled-components';
 import Button from "../Button";
 import AdjustableDiv from "../AdjustableDiv";
@@ -7,16 +7,23 @@ type RequestButtonProps = {
   Text: string;
   width: string;
   height: string;
+  setStateMakeRequest?: React.Dispatch<SetStateAction<boolean>>;
 };
 
 const RequestButton: React.FC<RequestButtonProps> = ({
   Text,
   width,
   height,
+  setStateMakeRequest,
 }) => {
   return (
     <AdjustableDiv width={width} height={height}>
-      <Button ButtonText={Text} width={"100%"} height={"100%"} />
+      <Button
+        onClickFunction={() => setStateMakeRequest(true)}
+        ButtonText={Text}
+        width={"100%"}
+        height={"100%"}
+      />
     </AdjustableDiv>
   );
 };

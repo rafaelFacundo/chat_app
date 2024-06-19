@@ -8,5 +8,5 @@ export const env_channels = {
 };
 
 export const envBridge = {
-  userDataBaseApiCreateUserUrl: process.env.teste,
+  userDataBaseApiCreateUserUrl: process.env.USER_DATABASE_API_BASE_URL,
 };

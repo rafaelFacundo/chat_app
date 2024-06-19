@@ -19,7 +19,7 @@ export const rendererConfig: Configuration = {
   },
   plugins: [
     new webpack.EnvironmentPlugin({
-      teste: process.env.TESTE,
+      teste: process.env.USER_DATABASE_API_BASE_URL,
     }),
   ],
   resolve: {

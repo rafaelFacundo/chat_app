@@ -22,8 +22,8 @@ ipcMain.handle(env_channels.userDataBaseApiCreateUserUrl, () => {
 const createWindow = (): void => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    height: 600,
-    width: 800,
+    height: 900,
+    width: 1100,
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
