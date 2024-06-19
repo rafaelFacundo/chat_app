@@ -1,6 +1,8 @@
-import React, { SetStateAction } from "react";
+import React, { SetStateAction, useState } from "react";
 import styled from "styled-components";
 import AdjustableDiv from "../AdjustableDiv";
+import OpenEyeVector from "../../../assets/openEyeVector.png";
+import ClosedEyeVector from "../../../assets/closedEyeVector.png";
 
 type InputProps = {
   border?: string;
@@ -15,12 +17,32 @@ const Input = styled.input<InputProps>`
   border: ${(props) => (props.border ? props.border : "none")};
   background-color: #f0f0f0;
   transition: 0.5s all;
-  &:focus {
-    width: 110%;
-  }
   box-sizing: border-box;
   padding: 5px;
   border-bottom: 1px solid #0d0d4a;
+`;
+
+const Div = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+`;
+
+const Image = styled.img`
+  width: 35px;
+  height: 100%;
+`;
+
+const Button = styled.button`
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  background: none;
+  border: none;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 type TextInputProps = {
@@ -29,6 +51,7 @@ type TextInputProps = {
   setState: React.Dispatch<SetStateAction<string>>;
   state: string;
   border?: string;
+  isPasswordInput?: boolean;
 };
 
 const TextInput: React.FC<TextInputProps> = ({
@@ -37,14 +60,27 @@ const TextInput: React.FC<TextInputProps> = ({
   setState,
   state,
   border,
+  isPasswordInput,
 }) => {
+  const [showTextInputed, setshowTextInputed] = useState<boolean>(
+    isPasswordInput ? false : true
+  );
+
   return (
     <AdjustableDiv height={height} width={width}>
-      <Input
-        onChange={(e) => setState(e.target.value)}
-        value={state}
-        border={border}
-      />
+      <Div>
+        <Input
+          onChange={(e) => setState(e.target.value)}
+          value={state}
+          border={border}
+          type={!showTextInputed ? "password" : "text"}
+        />
+        {isPasswordInput && (
+          <Button onClick={() => setshowTextInputed(!showTextInputed)}>
+            <Image src={showTextInputed ? ClosedEyeVector : OpenEyeVector} />
+          </Button>
+        )}
+      </Div>
     </AdjustableDiv>
   );
 };

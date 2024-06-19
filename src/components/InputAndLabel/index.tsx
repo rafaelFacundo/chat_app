@@ -1,7 +1,7 @@
-import React, { SetStateAction } from 'react';
-import styled from 'styled-components';
-import TextInput from '../TextInput';
-import AdjustableDiv from '../AdjustableDiv';
+import React, { SetStateAction } from "react";
+import styled from "styled-components";
+import TextInput from "../TextInput";
+import AdjustableDiv from "../AdjustableDiv";
 
 const Text = styled.h5`
   color: black;
@@ -15,6 +15,7 @@ type InputAndLabelProps = {
   setState: React.Dispatch<SetStateAction<string>>;
   state: string;
   inputBorder?: string;
+  isPassword?: boolean;
 };
 
 const InputAndLabel: React.FC<InputAndLabelProps> = ({
@@ -24,6 +25,7 @@ const InputAndLabel: React.FC<InputAndLabelProps> = ({
   setState,
   state,
   inputBorder,
+  isPassword,
 }) => {
   return (
     <AdjustableDiv width={width} height={height}>
@@ -31,9 +33,10 @@ const InputAndLabel: React.FC<InputAndLabelProps> = ({
       <TextInput
         setState={setState}
         state={state}
-        width={'100%'}
-        height={'60%'}
+        width={"100%"}
+        height={"60%"}
         border={inputBorder}
+        isPasswordInput={isPassword}
       />
     </AdjustableDiv>
   );

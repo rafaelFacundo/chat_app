@@ -72,6 +72,7 @@ const SignUpScreen: React.FC = () => {
           state={userPassword}
           setState={setUserPassword}
           inputBorder={isPasswordsDiferents ? "1px solid red" : undefined}
+          isPassword={true}
         />
         <InputAndLabel
           Label={"Re type your password: "}
@@ -80,6 +81,7 @@ const SignUpScreen: React.FC = () => {
           state={userPasswordConfirmation}
           setState={setUserPasswordConfirmation}
           inputBorder={isPasswordsDiferents ? "1px solid red" : undefined}
+          isPassword={true}
         />
         {!isPasswordsDiferents &&
           userPassword !== "" &&
